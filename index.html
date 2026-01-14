@@ -1,238 +1,613 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alpha Insight</title>
-  <link rel="icon" type="image/png" href="img/alphalogo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      background: #ffffff;
-      color: #1a1a1a;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 22px;
-      color: #1a1a1a;
-      letter-spacing: 1px;
-    }
-    .logo span {
-      color: #d2691e;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 48px;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #ffffff;
-      z-index: 999;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .section {
-      padding: 100px 24px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .section img.section-graphic {
-      display: block;
-      max-width: 300px;
-      margin: 0 auto 24px;
-    }
-    .hero {
-      text-align: center;
-      padding-top: 160px;
-      padding-bottom: 100px;
-      background: linear-gradient(135deg, #fff4e6 0%, #f0f4ff 100%);
-    }
-    .hero h1 {
-      font-size: 52px;
-      margin-bottom: 16px;
-      color: #222;
-    }
-    .hero p {
-      font-size: 20px;
-      color: #555;
-      margin-bottom: 32px;
-    }
-    .button {
-      display: inline-block;
-      padding: 14px 32px;
-      background-color: #d2691e;
-      color: #fff;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    .button:hover {
-      background-color: #a04f14;
-    }
-    .section-title {
-      font-size: 36px;
-      margin-bottom: 24px;
-      text-align: center;
-      color: #d2691e;
-    }
-    .features {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .feature {
-      flex: 1 1 280px;
-      background: #fff8f2;
-      padding: 24px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    .feature h3 {
-      margin-bottom: 12px;
-      font-size: 20px;
-      color: #d2691e;
-    }
-    .pricing-table {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-    .price-card {
-      background: #fef6ef;
-      padding: 24px;
-      border-radius: 12px;
-      width: 280px;
-      text-align: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    }
-    .price-card h4 {
-      margin-bottom: 8px;
-      font-size: 22px;
-      color: #d2691e;
-    }
-    .price-card p {
-      color: #555;
-      margin-bottom: 12px;
-    }
-    .final-cta {
-      text-align: center;
-      background-color: #fff7f0;
-      padding: 80px 24px;
-    }
-    .final-cta h2 {
-      color: #d2691e;
-    }
-    ul, ol {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background-color: #f5f5f5;
-      font-size: 14px;
-      color: #888;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexInsights | Executive Intelligence for SMBs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary-navy: #1F3A8A;
+            --deep-dark: #0F172A; /* Darker accent for backgrounds */
+            --accent-amber: #F59E0B;
+            --accent-amber-hover: #D97706;
+            --text-light: #F8FAFC;
+            --text-dim: #94A3B8;
+            --glass-bg: rgba(31, 58, 138, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --transition-speed: 0.6s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--deep-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #94A3B8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: var(--text-dim);
+            max-width: 600px;
+        }
+
+        /* --- UI COMPONENTS --- */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-amber);
+            color: var(--deep-dark);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-amber-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            backdrop-filter: blur(10px);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- ANIMATION UTILITIES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--accent-amber);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-amber);
+        }
+
+        .cta-nav {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .cta-nav { display: block; }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-sub {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .value-pills {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .pill {
+            background: rgba(31, 58, 138, 0.3);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pill i { color: var(--accent-amber); }
+
+        /* Abstract Hero Background Graphics */
+        .glow-bg {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(31, 58, 138, 0.6) 0%, rgba(15, 23, 42, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            filter: blur(80px);
+            animation: pulse 6s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* --- SECTION 2: PROBLEM / SOLUTION (PAS) --- */
+        .section-padding {
+            padding: 6rem 5%;
+        }
+
+        .pas-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .pas-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .pas-content h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .pas-content p {
+            margin-bottom: 2rem;
+        }
+
+        .comparison-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .stat-label {
+            font-weight: 500;
+        }
+
+        .stat-val-bad { color: #ef4444; font-weight: 700; }
+        .stat-val-good { color: var(--accent-amber); font-weight: 700; }
+
+        /* --- SECTION 3: OFFER (Bento Grid) --- */
+        .offer-section {
+            background: #0B1120;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bento-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-navy);
+        }
+
+        .bento-icon {
+            font-size: 2rem;
+            color: var(--accent-amber);
+            margin-bottom: 1.5rem;
+            background: rgba(245, 158, 11, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bento-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .bento-card ul {
+            list-style: none;
+            color: var(--text-dim);
+        }
+
+        .bento-card ul li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bento-card ul li i {
+            font-size: 0.8rem;
+            color: var(--accent-amber);
+        }
+
+        /* --- SECTION 4: PROCESS & CTA --- */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .process-steps {
+                flex-direction: row;
+                justify-content: space-between;
+                position: relative;
+            }
+            
+            /* Connecting line */
+            .process-steps::before {
+                content: '';
+                position: absolute;
+                top: 25px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: var(--glass-border);
+                z-index: 0;
+            }
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: var(--deep-dark); /* Masks line behind text */
+            padding: 0 10px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-navy);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 1rem;
+            border: 2px solid var(--accent-amber);
+        }
+
+        .step h4 { margin-bottom: 0.5rem; }
+
+        .final-cta-box {
+            background: linear-gradient(135deg, var(--primary-navy), #111827);
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 4rem 5%;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            color: var(--text-dim);
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for mobile demo */
+            .btn-secondary { margin: 1rem 0 0 0; display: block; width: 100%; text-align: center;}
+            .btn-primary { width: 100%; text-align: center; }
+            .hero { padding-top: 6rem; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="logo"><span>Alpha</span> Insight</div>
-  </header>
 
-  
-  <div class="section hero">
-    <img src="img/alphalogo.png" alt="Alpha Insight Logo" class="section-graphic">
-    <h1>Alpha Insight</h1>
-    <p>Custom Power BI dashboards designed to turn data into business clarity. Strategy-led. Professionally built. Delivered fast.</p>
-    <a href="#contact" class="button">Book Free Discovery Call</a>
-  </div>
+    <nav>
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i> ApexInsights
+        </div>
+        <div class="nav-links">
+            <a href="#problem">Problem</a>
+            <a href="#solution">Solution</a>
+            <a href="#process">Process</a>
+        </div>
+        <a href="#book" class="btn btn-primary cta-nav">Book Clarity Call</a>
+    </nav>
 
-  <div class="section">
-    <h2 class="section-title">Your Data. Your KPIs. Delivered Fast.</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>🧠 Consultant-Led</h3>
-        <p>Work with someone who understands your business, not just your database.</p>
-      </div>
-      <div class="feature">
-        <h3>⚡ Fast Delivery</h3>
-        <p>Offshored development with expert oversight for speed and affordability.</p>
-      </div>
-      <div class="feature">
-        <h3>🔁 Ongoing Support</h3>
-        <p>Keep your dashboards fresh with optional monthly support plans.</p>
-      </div>
-    </div>
-  </div>
+    <section class="hero">
+        <div class="glow-bg"></div>
+        <div class="hero-content">
+            <div class="reveal">
+                <h1>Turn messy business data<br>into clear decisions fast.</h1>
+                <span class="hero-sub">Done-for-you dashboards for growing businesses. <br>No internal analysts needed.</span>
+            </div>
+            
+            <div class="value-pills reveal">
+                <span class="pill"><i class="fa-solid fa-bolt"></i> Fast Setup</span>
+                <span class="pill"><i class="fa-solid fa-coins"></i> Simple Pricing</span>
+                <span class="pill"><i class="fa-solid fa-plug"></i> Connects to QuickBooks/CRM</span>
+            </div>
 
-  <div class="section">
-    <img src="img/kpi.png" alt="Pricing" class="section-graphic" width="400" height="200">
-    <h2 class="section-title">Flexible Pricing for Growing Businesses</h2>
-    <div class="pricing-table">
-      <div class="price-card">
-        <h4>Starter</h4>
-        <p>1 dashboard, plug-and-play</p>
-        <strong>$1,000</strong>
-      </div>
-      <div class="price-card">
-        <h4>Growth</h4>
-        <p>Up to 3 dashboards, tailored KPIs</p>
-        <strong>$2,500</strong>
-      </div>
-      <div class="price-card">
-        <h4>Premium</h4>
-        <p>Full-stack reporting, advanced logic</p>
-        <strong>$5,000+</strong>
-      </div>
-    </div>
-    <p style="text-align:center; margin-top: 16px; color:#555;">+ Monthly support starting at $250/month</p>
-  </div>
+            <div class="reveal">
+                <a href="#book" class="btn btn-primary">Book a Free Clarity Call</a>
+                <a href="#demo" class="btn btn-secondary"><i class="fa-solid fa-play"></i> View Example</a>
+            </div>
+        </div>
+    </section>
 
-  <div class="section" style="background:#fff9f4;">
-    <img src="img/process.png" alt="Process" class="section-graphic">
-    <h2 class="section-title">Who We Serve</h2>
-    <ul>
-      <li>✅ Business owners tired of spreadsheets</li>
-      <li>✅ Sales and ops teams needing clarity</li>
-      <li>✅ CFOs fed up with manual reporting</li>
-      <li>✅ Agencies wanting better client visibility</li>
-    </ul>
-  </div>
+    <section id="problem" class="section-padding">
+        <div class="pas-grid">
+            <div class="pas-content reveal">
+                <p style="color: var(--accent-amber); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">The Reality</p>
+                <h2>Running a business blind is exhausting.</h2>
+                <p>You have data everywhere—QuickBooks, spreadsheets, CRMs, ad platforms. But when you need to answer a simple question like <em>"Are we actually profitable on this project?"</em> it takes hours of digging.</p>
+                <p>SMB owners shouldn't have to choose between flying blind or hiring an expensive full-time analyst.</p>
+            </div>
+            <div class="comparison-card reveal">
+                <div class="stat-row">
+                    <span class="stat-label">Current State</span>
+                    <span class="stat-val-bad">Chaos & Spreadsheets</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Time to Insights</span>
+                    <span class="stat-val-bad">7-14 Days</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Analyst Cost</span>
+                    <span class="stat-val-bad">$85k/year + Benefits</span>
+                </div>
+                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px dashed rgba(255,255,255,0.2);"></div>
+                <div class="stat-row">
+                    <span class="stat-label" style="color:white;">With ApexInsights</span>
+                    <span class="stat-val-good">Automated Dashboards</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label" style="color:white;">Time to Insights</span>
+                    <span class="stat-val-good">Real-Time</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label" style="color:white;">Cost</span>
+                    <span class="stat-val-good">Predictable Flat Fee</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="section">
-    <img src="img/ourprocess2.png" alt="Our Process" class="section-graphic">
-    <h2 class="section-title">Our Process</h2>
-    <ol>
-      <li><strong>Discovery Call</strong> → Define KPIs and systems</li>
-      <li><strong>Build & Deliver</strong> → Expert-built reports, delivered with precision</li>
-      <li><strong>Launch</strong> → Embed or publish your report</li>
-      <li><strong>Support</strong> → Optional ongoing updates and care</li>
-    </ol>
-  </div>
+    <section id="solution" class="section-padding offer-section">
+        <div class="section-header reveal">
+            <h2>Your business, visualized.</h2>
+            <p style="margin: 0 auto;">We build, maintain, and update your executive command center.</p>
+        </div>
 
-  <div class="final-cta" id="contact">
-    <img src="img/logo.png" alt="Contact" class="section-graphic">
-    <h2>Let’s Build Your First Dashboard</h2>
-    <p>Let Alpha Insight show you what’s possible with your data — clarity, confidence, and control.</p>
-    <a href="https://calendly.com/your-link" class="button">Book a Free Call</a>
-  </div>
+        <div class="bento-grid">
+            <div class="bento-card reveal">
+                <div class="bento-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <h3>Financial Clarity</h3>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Cash Flow Forecasts</li>
+                    <li><i class="fa-solid fa-check"></i> P&L Visualization</li>
+                    <li><i class="fa-solid fa-check"></i> Expense Categorization</li>
+                </ul>
+            </div>
+            <div class="bento-card reveal">
+                <div class="bento-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                <h3>Sales & Pipeline</h3>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Conversion Rates</li>
+                    <li><i class="fa-solid fa-check"></i> Rep Performance</li>
+                    <li><i class="fa-solid fa-check"></i> Revenue Projections</li>
+                </ul>
+            </div>
+            <div class="bento-card reveal">
+                <div class="bento-icon"><i class="fa-solid fa-gears"></i></div>
+                <h3>Operational Efficiency</h3>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Inventory Turnover</li>
+                    <li><i class="fa-solid fa-check"></i> Project Margins</li>
+                    <li><i class="fa-solid fa-check"></i> Resource Utilization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    &copy; 2025 Alpha Insight. All rights reserved.
-  </footer>
+    <section id="process" class="section-padding">
+        <div class="section-header reveal">
+            <h2>From chaos to clarity in 14 days.</h2>
+            <p style="margin: 0 auto;">No bloated consulting projects. Just results.</p>
+        </div>
+
+        <div class="process-steps reveal">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Clarity Call</h4>
+                <p style="font-size: 0.9rem;">We map your data sources and KPIs in a 30-min session.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Build Sprint</h4>
+                <p style="font-size: 0.9rem;">We connect your tools and build your custom dashboard (10-14 days).</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Insights</h4>
+                <p style="font-size: 0.9rem;">You get login access and a monthly insights review video.</p>
+            </div>
+        </div>
+
+        <div id="book" class="final-cta-box reveal">
+            <h2>Stop guessing. Start seeing clearly.</h2>
+            <p style="color: var(--text-dim); margin: 1rem auto 2rem;">Join other smart SMB founders who treat their data as an asset, not a headache.</p>
+            <a href="#" class="btn btn-primary" onclick="alert('Connect this to your Calendly link!')">Book Your Free Call</a>
+            <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-dim);"><i class="fa-solid fa-lock"></i> No obligation. 100% Free Consultation.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+            <i class="fa-solid fa-layer-group"></i> ApexInsights
+        </div>
+        <p style="font-size: 0.9rem;">&copy; 2024 ApexInsights. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple Intersection Observer to trigger animations on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((element) => {
+            observer.observe(element);
+        });
+
+        // Stagger animation delay for child elements (Music flow effect)
+        const pills = document.querySelectorAll('.pill');
+        pills.forEach((pill, index) => {
+            pill.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
 </body>
 </html>
