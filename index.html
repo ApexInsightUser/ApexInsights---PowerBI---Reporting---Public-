@@ -8,14 +8,18 @@
     <style>
         /* --- VARIABLES & RESET --- */
         :root {
-            --primary-navy: #1F3A8A;
-            --deep-dark: #0F172A; /* Darker accent for backgrounds */
-            --accent-amber: #F59E0B;
-            --accent-amber-hover: #D97706;
-            --text-light: #F8FAFC;
-            --text-dim: #94A3B8;
-            --glass-bg: rgba(31, 58, 138, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            /* NEW PALETTE: Forest & Cream */
+            --primary-forest: #064E3B; /* The main brand color */
+            --deep-forest: #022C22;    /* Darker shade for background depth */
+            --cream-accent: #FEFCE8;   /* The bright accent */
+            --cream-dim: #FFFBEB;      /* Slightly darker cream for hover */
+            
+            --text-light: #FEFCE8;
+            --text-dim: rgba(254, 252, 232, 0.7); /* Cream with opacity */
+            
+            --glass-bg: rgba(6, 78, 59, 0.5); /* Forest glass */
+            --glass-border: rgba(254, 252, 232, 0.15); /* Cream border */
+            
             --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --transition-speed: 0.6s;
         }
@@ -32,7 +36,7 @@
 
         body {
             font-family: var(--font-main);
-            background-color: var(--deep-dark);
+            background-color: var(--deep-forest);
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
@@ -48,7 +52,8 @@
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #fff, #94A3B8);
+            /* Gradient Text: Cream to transparent/dim */
+            background: linear-gradient(to right, #FEFCE8, #bbf7d0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -56,6 +61,7 @@
         h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 1rem;
+            color: var(--cream-accent);
         }
 
         p {
@@ -77,26 +83,27 @@
         }
 
         .btn-primary {
-            background-color: var(--accent-amber);
-            color: var(--deep-dark);
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            background-color: var(--cream-accent);
+            color: var(--primary-forest); /* Dark text on light button */
+            box-shadow: 0 4px 15px rgba(254, 252, 232, 0.2);
         }
 
         .btn-primary:hover {
-            background-color: var(--accent-amber-hover);
+            background-color: #fff; /* Even brighter on hover */
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+            box-shadow: 0 8px 25px rgba(254, 252, 232, 0.4);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(254, 252, 232, 0.1);
             color: var(--text-light);
             backdrop-filter: blur(10px);
             margin-left: 1rem;
+            border: 1px solid var(--glass-border);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(254, 252, 232, 0.2);
         }
 
         /* --- ANIMATION UTILITIES --- */
@@ -121,7 +128,7 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(2, 44, 34, 0.85); /* Deep Forest transparent */
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
         }
@@ -136,7 +143,7 @@
         }
 
         .logo i {
-            color: var(--accent-amber);
+            color: var(--cream-accent);
         }
 
         .nav-links {
@@ -152,7 +159,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--accent-amber);
+            color: var(--cream-accent);
         }
 
         .cta-nav {
@@ -196,25 +203,26 @@
         }
 
         .pill {
-            background: rgba(31, 58, 138, 0.3);
+            background: rgba(6, 78, 59, 0.4);
             border: 1px solid var(--glass-border);
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
-            color: var(--text-dim);
+            color: var(--text-light);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .pill i { color: var(--accent-amber); }
+        .pill i { color: var(--cream-accent); }
 
-        /* Abstract Hero Background Graphics */
+        /* Abstract Hero Background Graphics - GREEN GLOW */
         .glow-bg {
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(31, 58, 138, 0.6) 0%, rgba(15, 23, 42, 0) 70%);
+            /* Radial Gradient from Forest Green to Transparent */
+            background: radial-gradient(circle, rgba(6, 78, 59, 0.8) 0%, rgba(2, 44, 34, 0) 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -267,7 +275,7 @@
             justify-content: space-between;
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(254, 252, 232, 0.1);
         }
 
         .stat-row:last-child {
@@ -280,12 +288,12 @@
             font-weight: 500;
         }
 
-        .stat-val-bad { color: #ef4444; font-weight: 700; }
-        .stat-val-good { color: var(--accent-amber); font-weight: 700; }
+        .stat-val-bad { color: #fca5a5; font-weight: 700; } /* Light Red for visibility on dark */
+        .stat-val-good { color: var(--cream-accent); font-weight: 700; }
 
         /* --- SECTION 3: OFFER (Bento Grid) --- */
         .offer-section {
-            background: #0B1120;
+            background: #042f27; /* Slightly lighter forest for contrast */
         }
 
         .section-header {
@@ -302,7 +310,7 @@
         }
 
         .bento-card {
-            background: linear-gradient(145deg, #1e293b, #0f172a);
+            background: linear-gradient(145deg, #064E3B, #022C22);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 2.5rem;
@@ -313,14 +321,14 @@
 
         .bento-card:hover {
             transform: translateY(-10px);
-            border-color: var(--primary-navy);
+            border-color: var(--cream-accent);
         }
 
         .bento-icon {
             font-size: 2rem;
-            color: var(--accent-amber);
+            color: var(--primary-forest);
             margin-bottom: 1.5rem;
-            background: rgba(245, 158, 11, 0.1);
+            background: var(--cream-accent);
             width: 60px;
             height: 60px;
             border-radius: 12px;
@@ -349,7 +357,7 @@
 
         .bento-card ul li i {
             font-size: 0.8rem;
-            color: var(--accent-amber);
+            color: var(--cream-accent);
         }
 
         /* --- SECTION 4: PROCESS & CTA --- */
@@ -386,15 +394,15 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            background: var(--deep-dark); /* Masks line behind text */
+            background: var(--deep-forest); /* Masks line behind text */
             padding: 0 10px;
         }
 
         .step-number {
             width: 50px;
             height: 50px;
-            background: var(--primary-navy);
-            color: white;
+            background: var(--primary-forest);
+            color: var(--cream-accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -402,19 +410,20 @@
             font-weight: 700;
             font-size: 1.2rem;
             margin: 0 auto 1rem;
-            border: 2px solid var(--accent-amber);
+            border: 2px solid var(--cream-accent);
         }
 
-        .step h4 { margin-bottom: 0.5rem; }
+        .step h4 { margin-bottom: 0.5rem; color: var(--cream-accent); }
 
         .final-cta-box {
-            background: linear-gradient(135deg, var(--primary-navy), #111827);
+            background: linear-gradient(135deg, var(--primary-forest), #022C22);
             border-radius: 30px;
             padding: 4rem 2rem;
             text-align: center;
             max-width: 1000px;
             margin: 0 auto;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
         /* --- FOOTER --- */
@@ -427,7 +436,7 @@
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplified for mobile demo */
+            .nav-links { display: none; }
             .btn-secondary { margin: 1rem 0 0 0; display: block; width: 100%; text-align: center;}
             .btn-primary { width: 100%; text-align: center; }
             .hero { padding-top: 6rem; }
@@ -472,7 +481,7 @@
     <section id="problem" class="section-padding">
         <div class="pas-grid">
             <div class="pas-content reveal">
-                <p style="color: var(--accent-amber); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">The Reality</p>
+                <p style="color: var(--cream-accent); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">The Reality</p>
                 <h2>Running a business blind is exhausting.</h2>
                 <p>You have data everywhere—QuickBooks, spreadsheets, CRMs, ad platforms. But when you need to answer a simple question like <em>"Are we actually profitable on this project?"</em> it takes hours of digging.</p>
                 <p>SMB owners shouldn't have to choose between flying blind or hiring an expensive full-time analyst.</p>
@@ -490,7 +499,7 @@
                     <span class="stat-label">Analyst Cost</span>
                     <span class="stat-val-bad">$85k/year + Benefits</span>
                 </div>
-                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px dashed rgba(255,255,255,0.2);"></div>
+                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px dashed rgba(254, 252, 232, 0.2);"></div>
                 <div class="stat-row">
                     <span class="stat-label" style="color:white;">With ApexInsights</span>
                     <span class="stat-val-good">Automated Dashboards</span>
