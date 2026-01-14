@@ -14,23 +14,26 @@
     <style>
         /* --- VARIABLES & RESET --- */
         :root {
-            /* 1. Primary Background - Charcoal */
-            --bg-charcoal: #0F172A;
-            --bg-charcoal-depth: #020617; /* Darker shade for contrast */
+            /* 1. Primary Background - Sand */
+            --bg-sand: #F5EDE6;
             
-            /* 2. Primary Text & Light Surfaces - Soft Ivory */
+            /* 2. Light Surfaces - Soft Ivory */
             --surface-ivory: #FDFBF7;
-            --text-ivory: #FDFBF7;
-            --text-ivory-dim: rgba(253, 251, 247, 0.7);
-            --glass-border: rgba(253, 251, 247, 0.15); /* Ivory Border */
+            --glass-border: rgba(255, 255, 255, 0.6); /* White border for glass effect */
             
             /* 3. Accent / Action - Mint */
             --accent-mint: #6EE7B7;
             --accent-mint-hover: #34D399;
             
-            /* Utils - UPDATED FONT */
+            /* Contrast Text (Necessary for Light Background) */
+            --text-dark: #1F2937;       /* Deep Charcoal for headings */
+            --text-body: #4B5563;       /* Slate Grey for body text */
+            --text-on-mint: #064E3B;    /* Dark Green text on Mint buttons */
+            
+            /* Utils */
             --font-main: 'Inter', sans-serif;
             --transition-speed: 0.6s;
+            --shadow-soft: 0 10px 30px -10px rgba(0,0,0,0.08); /* Softer shadow for light theme */
         }
 
         * {
@@ -46,25 +49,26 @@
         body {
             font-family: var(--font-main);
             font-weight: 400; /* Inter Regular */
-            background-color: var(--bg-charcoal);
-            color: var(--text-ivory);
+            background-color: var(--bg-sand);
+            color: var(--text-body);
             line-height: 1.6;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased; /* Crisp text rendering */
+            -webkit-font-smoothing: antialiased;
         }
 
         /* --- TYPOGRAPHY --- */
         h1, h2, h3, h4 {
             font-weight: 700; /* Inter Bold */
-            letter-spacing: -0.03em; /* Tighter tracking for Inter headings */
+            letter-spacing: -0.03em;
+            color: var(--text-dark);
         }
 
         h1 {
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            /* Gradient: Ivory to Mint */
-            background: linear-gradient(to right, var(--surface-ivory), var(--accent-mint));
+            /* Gradient: Dark Charcoal to a Mint-Dark Blend */
+            background: linear-gradient(to right, #1F2937, #059669);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -72,13 +76,12 @@
         h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 1rem;
-            color: var(--text-ivory);
         }
 
         p {
             font-size: 1.125rem;
             font-weight: 400; /* Inter Regular */
-            color: var(--text-ivory-dim);
+            color: var(--text-body);
             max-width: 600px;
         }
 
@@ -98,28 +101,28 @@
         /* Action Color: Mint */
         .btn-primary {
             background-color: var(--accent-mint);
-            color: var(--bg-charcoal); /* Dark text on mint for readability */
-            box-shadow: 0 0 20px rgba(110, 231, 183, 0.2);
+            color: var(--text-on-mint); /* Dark text for contrast against light mint */
+            box-shadow: 0 4px 15px rgba(110, 231, 183, 0.4);
         }
 
         .btn-primary:hover {
             background-color: var(--accent-mint-hover);
             transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(110, 231, 183, 0.4);
+            box-shadow: 0 8px 20px rgba(110, 231, 183, 0.6);
         }
 
-        /* Light Surface: Ivory Glass */
+        /* Secondary Button (Outline/Glass) */
         .btn-secondary {
-            background: rgba(253, 251, 247, 0.1);
-            color: var(--text-ivory);
+            background: rgba(255, 255, 255, 0.4);
+            color: var(--text-dark);
             backdrop-filter: blur(10px);
             margin-left: 1rem;
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .btn-secondary:hover {
-            background: rgba(253, 251, 247, 0.2);
-            border-color: var(--text-ivory);
+            background: #fff;
+            box-shadow: var(--shadow-soft);
         }
 
         /* --- ANIMATION UTILITIES --- */
@@ -144,16 +147,16 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            /* Charcoal with blur */
-            background: rgba(15, 23, 42, 0.85); 
+            /* Ivory Glass */
+            background: rgba(253, 251, 247, 0.8); 
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
         }
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700; /* Inter Bold */
-            color: var(--text-ivory);
+            font-weight: 700;
+            color: var(--text-dark);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -161,7 +164,7 @@
         }
 
         .logo i {
-            color: var(--accent-mint);
+            color: #059669; /* Darker mint for icon visibility */
         }
 
         .nav-links {
@@ -170,15 +173,15 @@
         }
 
         .nav-links a {
-            color: var(--text-ivory-dim);
+            color: var(--text-body);
             text-decoration: none;
-            font-weight: 500; /* Inter Medium */
+            font-weight: 500;
             transition: color 0.3s;
             font-size: 0.95rem;
         }
 
         .nav-links a:hover {
-            color: var(--accent-mint);
+            color: var(--text-dark);
         }
 
         .cta-nav {
@@ -208,8 +211,8 @@
 
         .hero-sub {
             font-size: 1.5rem;
-            font-weight: 400; /* Inter Regular */
-            color: var(--text-ivory);
+            font-weight: 400;
+            color: var(--text-body);
             margin-bottom: 2rem;
             display: block;
         }
@@ -223,27 +226,28 @@
         }
 
         .pill {
-            background: rgba(253, 251, 247, 0.05);
+            background: rgba(255, 255, 255, 0.5);
             border: 1px solid var(--glass-border);
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 500;
-            color: var(--text-ivory);
+            color: var(--text-body);
             display: flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
-        .pill i { color: var(--accent-mint); }
+        .pill i { color: #059669; }
 
-        /* Abstract Hero Background Graphics */
+        /* Abstract Hero Background Graphics - Mint/Sand Glow */
         .glow-bg {
             position: absolute;
             width: 600px;
             height: 600px;
-            /* Subtle Mint Glow fading into Charcoal */
-            background: radial-gradient(circle, rgba(110, 231, 183, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+            /* Mint glow on Sand background */
+            background: radial-gradient(circle, rgba(110, 231, 183, 0.3) 0%, rgba(245, 237, 230, 0) 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -253,7 +257,7 @@
         }
 
         @keyframes pulse {
-            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+            0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.9); }
             100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
         }
 
@@ -281,12 +285,13 @@
             margin-bottom: 2rem;
         }
 
+        /* Surface Color: Ivory */
         .comparison-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--glass-border);
+            background: var(--surface-ivory);
+            border: 1px solid #fff;
             border-radius: 20px;
             padding: 2rem;
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
             position: relative;
         }
 
@@ -296,7 +301,7 @@
             justify-content: space-between;
             margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .stat-row:last-child {
@@ -306,15 +311,16 @@
         }
 
         .stat-label {
-            font-weight: 600; /* Inter Semi-Bold */
+            font-weight: 600;
+            color: var(--text-body);
         }
 
-        .stat-val-bad { color: #f87171; font-weight: 700; } /* Soft Red */
-        .stat-val-good { color: var(--accent-mint); font-weight: 700; }
+        .stat-val-bad { color: #DC2626; font-weight: 700; } /* Standard Red */
+        .stat-val-good { color: #059669; font-weight: 700; } /* Darker Mint */
 
         /* --- SECTION 3: OFFER (Bento Grid) --- */
         .offer-section {
-            background: var(--bg-charcoal-depth);
+            background: #EFE6DE; /* Slightly darker sand for contrast */
         }
 
         .section-header {
@@ -330,24 +336,27 @@
             margin: 0 auto;
         }
 
+        /* Bento Card - Ivory Surface */
         .bento-card {
-            background: linear-gradient(145deg, #1E293B, #0F172A);
-            border: 1px solid var(--glass-border);
+            background: var(--surface-ivory);
+            border: 1px solid rgba(255,255,255,0.8);
             border-radius: 24px;
             padding: 2.5rem;
             transition: transform 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow-soft);
         }
 
         .bento-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent-mint);
+            box-shadow: 0 20px 40px -10px rgba(110, 231, 183, 0.3);
         }
 
         .bento-icon {
             font-size: 2rem;
-            color: var(--bg-charcoal);
+            color: var(--text-on-mint);
             margin-bottom: 1.5rem;
             background: var(--accent-mint);
             width: 60px;
@@ -356,19 +365,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 15px rgba(110, 231, 183, 0.3);
         }
 
         .bento-card h3 {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--text-ivory);
+            color: var(--text-dark);
         }
 
         .bento-card ul {
             list-style: none;
-            color: var(--text-ivory-dim);
+            color: var(--text-body);
         }
 
         .bento-card ul li {
@@ -381,7 +389,7 @@
 
         .bento-card ul li i {
             font-size: 0.8rem;
-            color: var(--accent-mint);
+            color: #059669; /* Darker mint */
         }
 
         /* --- SECTION 4: PROCESS & CTA --- */
@@ -400,7 +408,7 @@
                 position: relative;
             }
             
-            /* Connecting line (Ivory Glass) */
+            /* Connecting line */
             .process-steps::before {
                 content: '';
                 position: absolute;
@@ -408,7 +416,7 @@
                 left: 0;
                 right: 0;
                 height: 2px;
-                background: var(--glass-border);
+                background: #E5E7EB;
                 z-index: 0;
             }
         }
@@ -418,15 +426,15 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            background: var(--bg-charcoal); /* Masks line behind text */
+            background: var(--bg-sand); /* Masks line behind text */
             padding: 0 10px;
         }
 
         .step-number {
             width: 50px;
             height: 50px;
-            background: rgba(253, 251, 247, 0.05);
-            color: var(--accent-mint);
+            background: var(--surface-ivory);
+            color: #059669;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -435,29 +443,44 @@
             font-size: 1.2rem;
             margin: 0 auto 1rem;
             border: 2px solid var(--accent-mint);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .step h4 { margin-bottom: 0.5rem; color: var(--text-ivory); }
+        .step h4 { margin-bottom: 0.5rem; color: var(--text-dark); }
 
         .final-cta-box {
-            background: linear-gradient(135deg, #1E293B, #0F172A);
+            background: linear-gradient(135deg, var(--surface-ivory), #FFF);
             border-radius: 30px;
             padding: 4rem 2rem;
             text-align: center;
             max-width: 1000px;
             margin: 0 auto;
-            border: 1px solid var(--glass-border);
+            border: 1px solid #fff;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
         }
+        
+        .final-cta-box::before {
+             content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(110, 231, 183, 0.2) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .final-cta-box * { position: relative; z-index: 1; }
 
         /* --- FOOTER --- */
         footer {
             padding: 4rem 5%;
-            border-top: 1px solid var(--glass-border);
+            border-top: 1px solid rgba(0,0,0,0.05);
             text-align: center;
-            color: var(--text-ivory-dim);
-            background: var(--bg-charcoal);
+            color: var(--text-body);
+            background: var(--bg-sand);
         }
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
@@ -507,7 +530,7 @@
     <section id="problem" class="section-padding">
         <div class="pas-grid">
             <div class="pas-content reveal">
-                <p style="color: var(--accent-mint); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">The Reality</p>
+                <p style="color: #059669; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">The Reality</p>
                 <h2>Running a business blind is exhausting.</h2>
                 <p>You have data everywhere—QuickBooks, spreadsheets, CRMs, ad platforms. But when you need to answer a simple question like <em>"Are we actually profitable on this project?"</em> it takes hours of digging.</p>
                 <p>SMB owners shouldn't have to choose between flying blind or hiring an expensive full-time analyst.</p>
@@ -525,17 +548,17 @@
                     <span class="stat-label">Analyst Cost</span>
                     <span class="stat-val-bad">$85k/year + Benefits</span>
                 </div>
-                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px dashed var(--glass-border);"></div>
+                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 2px dashed rgba(0,0,0,0.1);"></div>
                 <div class="stat-row">
-                    <span class="stat-label" style="color: var(--text-ivory);">With ApexInsights</span>
+                    <span class="stat-label">With ApexInsights</span>
                     <span class="stat-val-good">Automated Dashboards</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label" style="color: var(--text-ivory);">Time to Insights</span>
+                    <span class="stat-label">Time to Insights</span>
                     <span class="stat-val-good">Real-Time</span>
                 </div>
                 <div class="stat-row">
-                    <span class="stat-label" style="color: var(--text-ivory);">Cost</span>
+                    <span class="stat-label">Cost</span>
                     <span class="stat-val-good">Predictable Flat Fee</span>
                 </div>
             </div>
@@ -605,9 +628,9 @@
 
         <div id="book" class="final-cta-box reveal">
             <h2>Stop guessing. Start seeing clearly.</h2>
-            <p style="color: var(--text-ivory-dim); margin: 1rem auto 2rem;">Join other smart SMB founders who treat their data as an asset, not a headache.</p>
+            <p style="color: var(--text-body); margin: 1rem auto 2rem;">Join other smart SMB founders who treat their data as an asset, not a headache.</p>
             <a href="#" class="btn btn-primary" onclick="alert('Connect this to your Calendly link!')">Book Your Free Call</a>
-            <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-ivory-dim);"><i class="fa-solid fa-lock"></i> No obligation. 100% Free Consultation.</p>
+            <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-body);"><i class="fa-solid fa-lock"></i> No obligation. 100% Free Consultation.</p>
         </div>
     </section>
 
